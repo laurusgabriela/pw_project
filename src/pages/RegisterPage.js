@@ -19,7 +19,7 @@ export default function RegisterPage(){
             }
         } catch (error) {
             console.error('Error during registration:', error);
-            alert('Registration failed due to a network error.');
+            alert('Registration failed.');
         }
     }
 
@@ -36,3 +36,4 @@ export default function RegisterPage(){
         </form>
     );
 }
+
