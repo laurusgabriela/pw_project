@@ -4,8 +4,8 @@ import {UserContext} from "./UserContext";
 
 export default function Header(){
     const {setUserInfo, userInfo} = useContext(UserContext);
-    useEffect(()=>{
-        fetch('http://localhost:4000/profile', {
+    useEffect( ()=>{
+         fetch('http://localhost:4000/profile', {
             credentials: 'include',
         }).then(response=>{
             response.json().then(userInfo =>{
@@ -14,8 +14,8 @@ export default function Header(){
         })
     }, []);
 
-    function logout(){
-        fetch('http://localhost:4000/logout', {
+    async function logout(){
+        await fetch('http://localhost:4000/logout', {
             credentials:'include',
             method: 'POST'
         });
@@ -25,10 +25,11 @@ export default function Header(){
     const username = userInfo?.username;
     return(
         <header>
-            <Link to="/" className="logo">MyBlog</Link>
+            <Link to="/" className="logo">GuitArgh</Link>
             <nav>
                 {username && (
                     <>
+                        <span>Hello, {username}</span>
                         <Link to="/create">Create new post</Link>
                         <a href="" onClick={logout}>Logout</a>
                     </>
