@@ -1,15 +1,23 @@
-export default function Post(){
+import {format} from "date-fns";
+import {Link} from "react-router-dom";
+
+
+export default function Post({title, summary, cover, content, createdAt, author}){
     return(<div className="post">
-        <div className="image">
-            <img src="https://www.homeoftone.co.uk/cdn/shop/products/IMG_2451_1024x1024.jpg?v=1646149793"/>
+        <div  className="image">
+            <Link to={'/post/id'}>
+                <img src={'http://localhost:4000/'+cover}/>
+            </Link>
         </div>
         <div className="texts">
-            <h2>Noul Red Kings Road Vintage</h2>
+            <Link to={'/post/id'}>
+                <h2>{title}</h2>
+            </Link>
             <p className="info">
-                <span className="author">Me</span>
-                <time>2023-09-17 09:12</time>
+                <span className="author">{author.username}</span>
+                <time>{format(new Date(createdAt), 'MMM d, yyyy HH:mm')}</time>
             </p>
-            <p className="summary">They might need a setup tweak or two, but this Nocaster and Stratocaster combine the most sought-after features of their respective decades into models that are highly evocative of Fender‘s golden era, especially tonally.</p>
+            <p className="summary">{summary}</p>
         </div>
     </div>);
 }
